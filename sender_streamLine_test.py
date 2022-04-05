@@ -31,10 +31,10 @@ class TypewiseTest(unittest.TestCase):
         print("InsideTest")
         senderStreamData()
         print("After Streaming ")
-        textRead =sys.stdin.read()
+        textRead =sys.stdin.readlines()
         print(textRead)
         print("End")
-        self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit+1)
+        self.assertEqual(len(textRead),streamReadingsLimit)
 
 class sensorStub():
     def __init__(self,currentVal,temperatureVal):
