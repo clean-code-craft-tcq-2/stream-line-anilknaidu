@@ -28,7 +28,7 @@ class TypewiseTest(unittest.TestCase):
         self.assertEqual(float(temperatureReading),temperatureDegCelcius)
     
     def test_receiverDataReceived(self):
-        textRead =sys.stdin.readlines()
+        textRead =sys.stdin.read()
         print("Receiver Data Received")
         print(textRead)
         self.assertEqual(len(textRead),1)
