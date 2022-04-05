@@ -26,7 +26,9 @@ class TypewiseTest(unittest.TestCase):
         self.assertEqual(float(temperatureReading),temperatureDegCelcius)
     
     def test_receiverDataReceived(self):
+        print("InsideTest")
         textRead =sys.stdin.read()
+        print(textRead)
         self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit+1)
 
 class sensorStub():
