@@ -31,7 +31,7 @@ class TypewiseTest(unittest.TestCase):
         textRead =sys.stdin.read()
         print("Receiver Data Received")
         print(textRead)
-        self.assertEqual(len(list(textRead.split("\n"))),1)
+        self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit)
 
 class sensorStub():
     def __init__(self,currentVal,temperatureVal):
