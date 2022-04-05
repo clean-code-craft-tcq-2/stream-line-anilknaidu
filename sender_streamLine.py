@@ -45,8 +45,13 @@ class sender_receiver_stream():
             self.sendDataToReceiver()
         return(senderText_AllReadings)
 
-if __name__ == "__main__":
+def senderStreamData():
     time_format = r"%d/%m/%Y %H:%M:%S"
     sensor_stub = sensorStub()
     senderToReceiverStream = sender_receiver_stream(time_format,sensor_stub)
     senderToReceiverStream.runSender(streamReadingsLimit)
+
+if __name__ == "__main__":
+    senderStreamData()
+
+

@@ -1,5 +1,6 @@
 import unittest
 from sender_streamLine import sender_receiver_stream
+from sender_streamLine import senderStreamData
 import random
 import sys
 import re
@@ -28,7 +29,7 @@ class TypewiseTest(unittest.TestCase):
     
     def test_receiverDataReceived(self):
         print("InsideTest")
-        time.sleep(5)
+        senderStreamData()
         textRead =sys.stdin.read()
         print(textRead)
         self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit+1)
