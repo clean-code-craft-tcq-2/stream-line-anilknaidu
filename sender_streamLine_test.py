@@ -3,6 +3,7 @@ from sender_streamLine import sender_receiver_stream
 import random
 import sys
 import re
+import time
 
 formatPattern = r"[\d ]+-[ \w/ :]+- Temperature:[ \w\. ]+- CurrentInAmperes: [ \w\. ]+"
 class TypewiseTest(unittest.TestCase):
@@ -27,6 +28,7 @@ class TypewiseTest(unittest.TestCase):
     
     def test_receiverDataReceived(self):
         print("InsideTest")
+        time.sleep(5)
         textRead =sys.stdin.read()
         print(textRead)
         self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit+1)
