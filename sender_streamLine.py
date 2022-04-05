@@ -37,11 +37,13 @@ class sender_receiver_stream():
 
     def runSender(self,streamReadingsLimit):
         #while(True)
+        senderText_AllReadings = ""
         for readingsNumber in range(streamReadingsLimit):
             self.readingNumber = readingsNumber
             self.fetchReadings()
+            senderText_AllReadings += self.readingsString
             self.sendDataToReceiver()
-
+        return(senderText_AllReadings)
 
 if __name__ == "__main__":
     time_format = r"%d/%m/%Y %H:%M:%S"

@@ -1,4 +1,6 @@
 import unittest
+
+from nbformat import read
 from sender_streamLine import sender_receiver_stream
 import random
 import sys
@@ -8,16 +10,17 @@ formatPattern = r"[\d ]+-[ \w/ :]+- Temperature:[ \w\. ]+- CurrentInAmperes: [ \
 class TypewiseTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TypewiseTest, self).__init__(*args, **kwargs)
-        self.readingsContent = senderToReceiverStream.fetchReadings()
+        self.readingsContent = senderToReceiverStream.runSender(streamReadingsLimit)
         print(self.readingsContent)
         self.maxDiff = None
 
     def test_readingsFormat(self):
-        readingsContent = self.readingsContent
+        readingsContent = self.readingsContent.split("\n")[0]
+        print(readingsContent)
         self.assertTrue(re.match(formatPattern,readingsContent))
  
     def test_sensorValues(self):
-        dataSent = self.readingsContent
+        dataSent = self.readingsContent.split("\n")[0]
         print(dataSent)
         temperatureReading = dataSent.split("-")[2].split(":")[1].strip()
         currentReading = dataSent.split("-")[3].split(":")[1].strip()
