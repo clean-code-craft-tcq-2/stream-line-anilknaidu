@@ -8,24 +8,25 @@ formatPattern = r"[\d ]+-[ \w/ :]+- Temperature:[ \w\. ]+- CurrentInAmperes: [ \
 class TypewiseTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TypewiseTest, self).__init__(*args, **kwargs)
-        self.readingsContent = senderToReceiverStream.runSender()
+        self.readingsContent = senderToReceiverStream.fetchReadings()
+        print(self.readingsContent)
         self.maxDiff = None
+
     def test_readingsFormat(self):
-        indexNum = int(random.uniform(1, streamReadingsLimit))
         readingsContent = self.readingsContent
-        readingsContent = readingsContent.split("\n")[indexNum]
         self.assertTrue(re.match(formatPattern,readingsContent))
  
     def test_sensorValues(self):
-        indexNum = int(random.uniform(1, streamReadingsLimit))
         dataSent = self.readingsContent
-        temperatureReading = dataSent.split("\n")[0].split("-")[2].split(":")[1].strip()
-        currentReading = dataSent.split("\n")[0].split("-")[3].split(":")[1].strip()
+        print(dataSent)
+        temperatureReading = dataSent.split("-")[2].split(":")[1].strip()
+        currentReading = dataSent.split("-")[3].split(":")[1].strip()
         self.assertEqual(float(currentReading),currentAmp)
         self.assertEqual(float(temperatureReading),temperatureDegCelcius)
-        
-    def test_indexLines(self):
-        self.assertEqual(len(list(self.readingsContent.split("\n")))-2,streamReadingsLimit)
+    
+    def test_receiverDataReceived(self):
+        textRead =sys.stdin.read()
+        self.assertEqual(len(list(textRead.split("\n"))),streamReadingsLimit+1)
 
 class sensorStub():
     def __init__(self,currentVal,temperatureVal):
@@ -42,5 +43,5 @@ if __name__ == "__main__":
     currentAmp = 3.1
     temperatureDegCelcius = 34
     sensor_stub = sensorStub(temperatureDegCelcius,currentAmp)
-    senderToReceiverStream = sender_receiver_stream(time_format,sensor_stub,streamReadingsLimit)
+    senderToReceiverStream = sender_receiver_stream(time_format,sensor_stub)
     unittest.main()
