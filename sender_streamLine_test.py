@@ -1,6 +1,4 @@
 import unittest
-
-from nbformat import read
 from sender_streamLine import sender_receiver_stream
 import random
 import sys
