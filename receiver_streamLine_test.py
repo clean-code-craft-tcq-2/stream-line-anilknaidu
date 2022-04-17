@@ -3,9 +3,6 @@ import receiver_streamLine
 
 class receiver_test(unittest.TestCase):
 
-    def test_readConsoleOutput(self):
-        self.assertTrue(len(receiver_streamLine.readConsoleOutput()) == 50)
-
     def test_getReadingsFromString(self):
         testConsoleOutString = ['1 - 17/04/2022 13:53:35 - Temperature: 52.8 - CurrentInAmperes: 5.96 \n','2 - 17/04/2022 13:53:35 - Temperature: 40.9 - CurrentInAmperes: 2.31 \n']
         bmsReadings = receiver_streamLine.getReadingsFromString(testConsoleOutString) 
