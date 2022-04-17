@@ -39,15 +39,18 @@ def calculateMovingAverage(readings, windowSize):
         i += 1
     return movingAverages
 
-def receiverStreamData(windowSize):
-    consoleOutLines = readConsoleOutput()
+def receiverStreamData(consoleOutLines,windowSize):
+    receiverOutput = ''
     readings = getReadingsFromString(consoleOutLines)
     for param in readings:
         minReading = getMinReading(readings[param]['readings'])
         maxReading = getMaxReading(readings[param]['readings'])
         movingAverages = calculateMovingAverage(readings[param]['readings'] , windowSize)
-        print("{0} - {{ min : {1}, max : {2}, moving averages : {3}}}".format(param,minReading,maxReading,movingAverages))
-    
+        receiverOutput += '{0} - {{ min : {1}, max : {2}, moving averages : {3}}}\n'.format(param,minReading,maxReading,movingAverages)
+                
+    print(receiverOutput)
+    return receiverOutput
 
 if __name__ == "__main__":
-    receiverStreamData(5)
+    consoleOutLines = readConsoleOutput()
+    receiverStreamData(consoleOutLines,5)
