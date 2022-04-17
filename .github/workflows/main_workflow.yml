@@ -41,6 +41,18 @@ jobs:
           python sender_streamLine.py | python receiver_streamLine.py
           python sender_streamLine.py | python sender_streamLine_test.py
           
+      - name: Run and collect coverage - receiver
+        run: |
+          coverage run --branch receiver_streamLine_test.py
+          coverage html
+          coverage report
+      - name: Upload coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: ./htmlcov
+          retention-days: 21
+          
       - name: Run command redirection - test receiver
         run: |
           python sender_streamLine.py | python receiver_streamLine_test.py
