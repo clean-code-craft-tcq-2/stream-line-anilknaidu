@@ -40,4 +40,8 @@ jobs:
         run: |
           python sender_streamLine.py | python receiver_streamLine.py
           python sender_streamLine.py | python sender_streamLine_test.py
+          
+      - name: Run command redirection - test receiver
+        run: |
           python sender_streamLine.py | python receiver_streamLine_test.py
+          
