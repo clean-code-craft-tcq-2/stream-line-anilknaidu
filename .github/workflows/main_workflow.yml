@@ -1,4 +1,4 @@
-name: Check Completeness
+name: Build and run
 
 on: [push, pull_request]
 
