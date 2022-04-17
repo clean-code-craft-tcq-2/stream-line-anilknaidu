@@ -40,3 +40,4 @@ jobs:
         run: |
           python sender_streamLine.py | python receiver_streamLine.py
           python sender_streamLine.py | python sender_streamLine_test.py
+          python sender_streamLine.py | python receiver_streamLine_test.py
