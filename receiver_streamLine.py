@@ -12,8 +12,10 @@ BMSReadings = {
     }
 }
 
+streamReadingsLimit = 50
+
 def readConsoleOutput():
-    lines = sys.stdin.readlines()
+    lines = [sys.stdin.readline() for i in range(streamReadingsLimit)]
     return lines
 
 def getReadingsFromString(lines):
